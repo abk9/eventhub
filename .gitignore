@@ -1,0 +1,32 @@
+# ── Python / Django ──────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+Django/Src/db.sqlite3
+Django/Src/staticfiles/
+Django/Src/media/
+.env
+
+# ── Node.js ───────────────────────────────────────────────
+node_modules/
+NodeJS/db.json
+NodeJS/.env
+
+# ── React ─────────────────────────────────────────────────
+frontend/node_modules/
+frontend/build/
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+# NE PAS ignorer .env.production (contient REACT_APP_API_URL pour Vercel)
+
+# ── OS / IDE ──────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
