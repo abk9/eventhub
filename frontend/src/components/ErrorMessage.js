@@ -3,7 +3,9 @@ export default function ErrorMessage({ error }) {
 
   const message = typeof error === 'string'
     ? error
-    : error.detail || error.error || JSON.stringify(error);
+    : error.detail || error.error || error.message
+      || Object.values(error).flat().join(' ')
+      || 'Une erreur est survenue';
 
   return <div className="error-message">{message}</div>;
 }
