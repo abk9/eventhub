@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getEvent, deleteEvent, getRegistrations, getParticipants } from '../api/api';
 import { useAuth } from '../context/AuthContext';
@@ -22,7 +22,7 @@ export default function EventDetail() {
   const [loading, setLoading]           = useState(true);
   const [error, setError]               = useState(null);
 
-  const load = useCallback(async () => {
+  async function load() {
     try {
       const [ev, regs, parts] = await Promise.all([
         getEvent(id),
@@ -37,9 +37,9 @@ export default function EventDetail() {
     } finally {
       setLoading(false);
     }
-  }, [id]);
+  }
 
-  useEffect(() => { load(); }, [load]);
+  useEffect(() => { load(); }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const canModify = event && isEditor &&
     (user?.role === 'admin' || event.created_by === user?.user_id);
