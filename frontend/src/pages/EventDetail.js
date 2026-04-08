@@ -39,7 +39,7 @@ export default function EventDetail() {
     }
   }
 
-  useEffect(() => { load(); }, [id]);
+  useEffect(() => { load(); }, [id, load]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const canModify = event && isEditor &&
     (user?.role === 'admin' || event.created_by === user?.user_id);

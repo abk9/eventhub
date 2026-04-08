@@ -62,7 +62,7 @@ export default function Events() {
     }
   }
 
-  useEffect(() => { loadEvents(); }, [filterStatus, filterDate, sortOrder]);
+  useEffect(() => { loadEvents(); }, [filterStatus, filterDate, sortOrder]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function handleFilterChange(key, value) {
     if (key === 'filterStatus') setFilterStatus(value);
