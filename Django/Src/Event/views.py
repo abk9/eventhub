@@ -26,6 +26,9 @@ def register(request):
     if User.objects.filter(username=username).exists():
         return Response({'error': 'Cet utilisateur existe déjà'}, status=400)
 
+    if email and User.objects.filter(email=email).exists():
+        return Response({'error': 'Un compte avec cet email existe déjà'}, status=400)
+
     user = User.objects.create_user(username=username, password=password, email=email)
     Profile.objects.create(user=user, role='viewer')  # viewer par défaut
     token, _ = Token.objects.get_or_create(user=user)
