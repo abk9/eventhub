@@ -3,7 +3,7 @@ services:
     name: eventhub-api
     runtime: python
     rootDir: Django
-    buildCommand: pip install -r requirements.txt && python Src/manage.py collectstatic --no-input && python Src/manage.py migrate
+    buildCommand: pip install -r requirements.txt && python Src/manage.py collectstatic --no-input && python Src/manage.py migrate && python Src/manage.py createsuperuser --no-input || true
     startCommand: gunicorn --chdir Src EventHub.wsgi:application
     envVars:
       - key: SECRET_KEY
@@ -18,6 +18,12 @@ services:
         fromDatabase:
           name: eventhub-db
           property: connectionString
+      - key: DJANGO_SUPERUSER_USERNAME
+        sync: false
+      - key: DJANGO_SUPERUSER_EMAIL
+        sync: false
+      - key: DJANGO_SUPERUSER_PASSWORD
+        sync: false
 
 databases:
   - name: eventhub-db
